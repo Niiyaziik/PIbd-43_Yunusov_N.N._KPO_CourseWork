@@ -19,7 +19,6 @@ class PredictionServiceTest extends TestCase
 
         $this->assertSame([], $result);
     }
-
     /**
      * Тест: резервный метод предсказания возвращает ожидаемые значения.
      *
