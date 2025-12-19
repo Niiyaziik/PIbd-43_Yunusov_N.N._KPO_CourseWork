@@ -7,9 +7,7 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * Проверяем, что гость перенаправляется на страницу логина.
-     */
+    /*Проверяем, что гость перенаправляется на страницу логина.*/
     public function test_guest_is_redirected_to_login(): void
     {
         $response = $this->get('/');

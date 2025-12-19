@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::table('stocks', function (Blueprint $table) {
             $table->boolean('is_available')->default(true)->after('isin');
         });
-        
+
         // По умолчанию все существующие тикеры делаем доступными
         DB::table('stocks')->update(['is_available' => true]);
     }
@@ -30,4 +30,3 @@ return new class extends Migration
         });
     }
 };
-

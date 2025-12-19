@@ -21,15 +21,16 @@ class StockSeeder extends Seeder
         foreach (self::TICKERS as $ticker) {
             // Проверяем, существует ли уже запись
             $stock = Stock::where('ticker', $ticker)->first();
-            
+
             if ($stock) {
                 $this->command->info("Тикер {$ticker} уже существует, пропускаем.");
+
                 continue;
             }
 
             // Пытаемся получить информацию о тикере из MOEX API
             $info = $this->fetchStockInfo($ticker);
-            
+
             Stock::create([
                 'ticker' => $ticker,
                 'name' => $info['name'] ?? $ticker,
@@ -57,7 +58,7 @@ class StockSeeder extends Seeder
                 'securities.columns' => 'SECID,SHORTNAME,ISIN',
             ]);
 
-            if (!$response->successful()) {
+            if (! $response->successful()) {
                 return ['name' => $ticker, 'isin' => null];
             }
 
@@ -65,7 +66,7 @@ class StockSeeder extends Seeder
             $columns = $body['securities']['columns'] ?? [];
             $data = $body['securities']['data'][0] ?? null;
 
-            if (!$data) {
+            if (! $data) {
                 return ['name' => $ticker, 'isin' => null];
             }
 
@@ -80,9 +81,9 @@ class StockSeeder extends Seeder
                 'isin' => $data[$idx['ISIN']] ?? null,
             ];
         } catch (\Exception $e) {
-            $this->command->warn("Ошибка загрузки информации о тикере {$ticker}: " . $e->getMessage());
+            $this->command->warn("Ошибка загрузки информации о тикере {$ticker}: ".$e->getMessage());
+
             return ['name' => $ticker, 'isin' => null];
         }
     }
 }
-

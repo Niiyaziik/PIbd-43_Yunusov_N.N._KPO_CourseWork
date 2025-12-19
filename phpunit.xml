@@ -32,4 +32,9 @@
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
     </php>
+    <logging>
+        <junit outputFile="tests/results/junit.xml"/>
+        <testdoxHtml outputFile="tests/results/test-results.html"/>
+        <testdoxText outputFile="tests/results/test-results.txt"/>
+    </logging>
 </phpunit>

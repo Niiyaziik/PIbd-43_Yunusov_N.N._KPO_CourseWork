@@ -3,7 +3,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.2",
@@ -14,7 +17,6 @@
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.2",
-        "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
@@ -49,6 +51,7 @@
             "@php artisan config:clear --ansi",
             "@php artisan test"
         ],
+        "test:report": "./vendor/bin/phpunit --log-junit tests/results/junit.xml --testdox-html tests/results/test-results.html --testdox-text tests/results/test-results.txt",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
@@ -77,6 +80,7 @@
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
+        "process-timeout": 600,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true

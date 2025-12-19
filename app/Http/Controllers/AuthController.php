@@ -10,17 +10,11 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
-    /**
-     * Показать форму входа
-     */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    /**
-     * Обработка входа
-     */
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -28,7 +22,6 @@ class AuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        // Пытаемся найти пользователя по логину
         $user = User::where('login', $credentials['login'])->first();
 
         if ($user && Hash::check($credentials['password'], $user->password)) {
@@ -43,17 +36,11 @@ class AuthController extends Controller
         ])->onlyInput('login');
     }
 
-    /**
-     * Показать форму регистрации
-     */
     public function showRegisterForm()
     {
         return view('auth.register');
     }
 
-    /**
-     * Обработка регистрации
-     */
     public function register(Request $request)
     {
         $validated = $request->validate([
@@ -69,7 +56,7 @@ class AuthController extends Controller
 
         $user = User::create([
             'login' => $validated['login'],
-            'name' => $validated['first_name'] . ' ' . $validated['last_name'],
+            'name' => $validated['first_name'].' '.$validated['last_name'],
             'first_name' => $validated['first_name'],
             'last_name' => $validated['last_name'],
             'email' => $validated['email'],
@@ -82,9 +69,6 @@ class AuthController extends Controller
         return redirect()->route('securities.index');
     }
 
-    /**
-     * Выход из системы
-     */
     public function logout(Request $request)
     {
         Auth::logout();
@@ -94,4 +78,3 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 }
-

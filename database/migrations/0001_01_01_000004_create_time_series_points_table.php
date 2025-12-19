@@ -44,4 +44,3 @@ return new class extends Migration
         Schema::dropIfExists('time_series_points');
     }
 };
-

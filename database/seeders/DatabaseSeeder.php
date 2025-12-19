@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // Заполняем таблицу stocks
         $this->call(StockSeeder::class);
-        
+
         // Создаем админа
         $this->call(AdminSeeder::class);
 

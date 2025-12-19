@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
     {
         // Проверяем, существует ли уже админ
         $admin = User::where('login', 'admin')->first();
-        
+
         if ($admin) {
             $this->command->info('Админ уже существует, обновляем пароль.');
             $admin->password = Hash::make('pass');
@@ -33,4 +33,3 @@ class AdminSeeder extends Seeder
         }
     }
 }
-

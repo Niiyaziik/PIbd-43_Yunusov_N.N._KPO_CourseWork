@@ -15,9 +15,8 @@ class Stock extends Model
         'isin',
         'is_available',
     ];
-    
+
     protected $casts = [
         'is_available' => 'boolean',
     ];
 }
-

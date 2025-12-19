@@ -64,21 +64,18 @@
             <tr>
                 <th>Ценная бумага</th>
                 <th>Текущая цена</th>
-                <th>Прогноз на 1 день</th>
-                <th>Прогноз на 252 дня</th>
+                <th>Прогноз на год</th>
                 <th>Рекомендация</th>
             </tr>
         </thead>
         <tbody>
             @foreach($predictions as $prediction)
                 @php
-                    $price1d = $prediction['predicted_price_1d'] ?? ($prediction['predicted_price'] ?? 0);
                     $price252d = $prediction['predicted_price_252d'] ?? ($prediction['predicted_price'] ?? 0);
                 @endphp
                 <tr>
                     <td>{{ $prediction['ticker'] }}</td>
                     <td>{{ number_format($prediction['current_price'], 2, ',', ' ') }} руб.</td>
-                    <td>{{ number_format($price1d, 2, ',', ' ') }} руб.</td>
                     <td>{{ number_format($price252d, 2, ',', ' ') }} руб.</td>
                     <td class="recommendation-{{ 
                         $prediction['recommendation'] === 'Покупать' ? 'buy' : 

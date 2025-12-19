@@ -15,11 +15,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || auth()->user()->login !== 'admin') {
+        if (! auth()->check() || auth()->user()->login !== 'admin') {
             abort(403, 'Доступ запрещен. Только для администраторов.');
         }
 
         return $next($request);
     }
 }
-

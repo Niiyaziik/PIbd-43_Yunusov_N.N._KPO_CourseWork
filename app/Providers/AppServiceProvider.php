@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
         // Планировщик задач для автоматического обновления CSV
         $this->app->booted(function () {
             $schedule = $this->app->make(Schedule::class);
-            
+
             // Обновляем данные каждый день в 20:00
             $schedule->command('securities:update-csv')
                 ->dailyAt('20:00')
